@@ -9,18 +9,61 @@
 //Open form with the bttn
 //Select AddBttn
 const addBttn = document.querySelector("#addBttn") as HTMLElement;
+
 //Select form
 const formAdd = document.querySelector("form") as HTMLElement;
+
 //Add EventListener
-addBttn?.addEventListener("click",() =>{
+addBttn?.addEventListener("click", () => {
     formAdd?.classList.add('flex');
     formAdd.classList.remove('hidden');
 })
+
 //Select closeBttn
 const closeBttn = document.querySelector("#closeBttn");
+
 //AddEventListener on closeBttn
-closeBttn?.addEventListener('click',(e) =>{
+closeBttn?.addEventListener('click', (e) => {
     e.preventDefault();
     formAdd.classList.add('hidden');
     formAdd.classList.remove('flex')
+})
+
+//Create interface
+interface ICartesListes {
+    id: string
+    categorie: string
+    montant: string,
+    motif: string,
+    date: string
+}
+//ID Generator 
+function IDgenerator(): string {
+    let id: string = Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    return id
+}
+
+//formAdd addEventListener
+let depensesArray: ICartesListes[] = [];
+let revenusArray: ICartesListes[] = [];
+
+
+
+formAdd.addEventListener("submit", (e) => {
+    //Select Input
+    const motifInput = document.querySelector('#motif') as HTMLInputElement;
+    const dateInput = document.querySelector('#date') as HTMLInputElement;
+    const categorieInput = document.querySelector('input[name="categorie"]:checked') as HTMLInputElement;
+    const montantInput = document.querySelector('#montant') as HTMLInputElement;
+    e.preventDefault();
+    let cartes: ICartesListes = {
+        id: IDgenerator(),
+        categorie: categorieInput.value,
+        montant: montantInput.value,
+        motif: motifInput.value,
+        date: dateInput.value
+    }
+    console.log(cartes)
 })

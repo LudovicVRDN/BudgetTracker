@@ -23,5 +23,31 @@ closeBttn?.addEventListener('click', (e) => {
     formAdd.classList.add('hidden');
     formAdd.classList.remove('flex');
 });
+//ID Generator 
+function IDgenerator() {
+    let id = Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    return id;
+}
+//formAdd addEventListener
+let depensesArray = [];
+let revenusArray = [];
+formAdd.addEventListener("submit", (e) => {
+    //Select Input
+    const motifInput = document.querySelector('#motif');
+    const dateInput = document.querySelector('#date');
+    const categorieInput = document.querySelector('input[name="categorie"]:checked');
+    const montantInput = document.querySelector('#montant');
+    e.preventDefault();
+    let cartes = {
+        id: IDgenerator(),
+        categorie: categorieInput.value,
+        montant: montantInput.value,
+        motif: motifInput.value,
+        date: dateInput.value
+    };
+    console.log(cartes);
+});
 export {};
 //# sourceMappingURL=index.js.map

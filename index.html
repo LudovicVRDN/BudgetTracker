@@ -49,20 +49,23 @@
     <footer class="flex-1 flex justify-center">
         <button class=" bg-violet-800 p-3 rounded-2xl shadow-xl/30 font-bold text-white md:w-80 " id="addBttn">Ajouter une nouvelle entrée
             !</button>
-        <form class="flex-col gap-2 hidden absolute  bg-violet-800 rounded-2xl shadow-xl/30 font-bold text-white p-5 bottom-20 right-80 md:w-100 transition-discrete ">
-            <button class="ml-auto" id="closeBttn"><i class="fa-solid fa-xmark"></i></button>
+        <form class="flex-col gap-2 hidden absolute  bg-violet-800 rounded-2xl shadow-xl/30 font-bold text-white p-5 md:bottom-20 md:right-80 md:w-100 ">
+           
             <div class="flex gap-3 ">
                 <label for="depense"><input type="radio" id="depense" name="categorie" value="Dépenses"> Dépense
                 </label>
                 <label for="revenus"><input type="radio" id="revenus" name="categorie" value="Revenus"> Revenus</label>
+                 <button class="ml-auto" id="closeBttn"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="flex flex-col gap-2">
                 <label>Montant:<input class="ml-1 border-2 border-gray-200 rounded-lg shadow-md p-1"
-                        type="number"></label>
+                        type="number" id="montant"></label>
                 <label>Motif : <input class="ml-1 border-2 border-gray-200 rounded-lg shadow-md p-1"
-                        type="text"></label>
-                <label>Date: <input class="ml-1 border-2 border-gray-200 rounded-lg shadow-md p-1" type="date"></label>
+                        type="text" id="motif"></label>
+                <label>Date: <input class="ml-1 border-2 border-gray-200 rounded-lg shadow-md p-1" type="date" id="date"></label>
             </div>
+            <button  class="bg-violet-800 border-1 border-white rounded-2xl shadow-xl/30 font-bold text-white p-5" id="validateBttn">Ajouter</button>
+            
         </form>
 
     </footer>
