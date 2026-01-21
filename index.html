@@ -7,6 +7,7 @@
     <title>Gestionnaire de budget</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://kit.fontawesome.com/648c4c545e.js" crossorigin="anonymous"></script>
+    <script type="module" src="dist/index.js"></script>
 </head>
 
 <body class="flex flex-col h-screen p-3 md:p-5 gap-5">
@@ -16,7 +17,7 @@
         <h1 class="text-2xl font-bold ">Gestionnaire de budget</h1>
     </header>
 
-    <main class="flex-5 flex flex-col gap-2">
+    <main class="flex-1 flex flex-col gap-2">
 
         <section>
             <h2 class="ml-5 text-lg">Revenus:</h2>
@@ -46,9 +47,10 @@
 
     </main>
     <footer class="flex-1 flex justify-center">
-        <button class=" bg-violet-800 p-3 rounded-2xl shadow-xl/30 font-bold text-white">Ajouter une nouvelle entrée
+        <button class=" bg-violet-800 p-3 rounded-2xl shadow-xl/30 font-bold text-white md:w-80 " id="addBttn">Ajouter une nouvelle entrée
             !</button>
-        <form class="flex-col gap-2 hidden">
+        <form class="flex-col gap-2 hidden absolute  bg-violet-800 rounded-2xl shadow-xl/30 font-bold text-white p-5 bottom-20 right-80 md:w-100 transition-discrete ">
+            <button class="ml-auto" id="closeBttn"><i class="fa-solid fa-xmark"></i></button>
             <div class="flex gap-3 ">
                 <label for="depense"><input type="radio" id="depense" name="categorie" value="Dépenses"> Dépense
                 </label>

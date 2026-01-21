@@ -5,22 +5,23 @@
 - Les éléments des deux liste pourront être supprimées via un bouton.
 - Afficher les totaux de chaque catégorie.
 - Filtrer les cartes par date.*/
-
 //Open form with the bttn
 //Select AddBttn
-const addBttn = document.querySelector("#addBttn") as HTMLElement;
+const addBttn = document.querySelector("#addBttn");
 //Select form
-const formAdd = document.querySelector("form") as HTMLElement;
+const formAdd = document.querySelector("form");
 //Add EventListener
-addBttn?.addEventListener("click",() =>{
+addBttn?.addEventListener("click", () => {
     formAdd?.classList.add('flex');
     formAdd.classList.remove('hidden');
-})
+});
 //Select closeBttn
 const closeBttn = document.querySelector("#closeBttn");
 //AddEventListener on closeBttn
-closeBttn?.addEventListener('click',(e) =>{
+closeBttn?.addEventListener('click', (e) => {
     e.preventDefault();
     formAdd.classList.add('hidden');
-    formAdd.classList.remove('flex')
-})
+    formAdd.classList.remove('flex');
+});
+export {};
+//# sourceMappingURL=index.js.map

@@ -4,6 +4,8 @@
   "description": "",
   "main": "tailwind.config.js",
   "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
