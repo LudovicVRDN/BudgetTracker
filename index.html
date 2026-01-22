@@ -22,26 +22,19 @@
         <section>
             <h2 class="ml-5 text-lg">Revenus:</h2>
             <div>
-                <ul class="border-2 border-gray-200 h-50 rounded-2xl shadow-xl mt-3 px-5">
-                    <li class="border-2  border-gray-200  rounded-2xl shadow-md mt-3 px-5 py-2 flex justify-between">
-                        <p>Montant : 350 €</p>
-                        <p>Motif : Console de jeu</p>
-                        <p>Date: 10/02/2026</p>
-                        <button><i class="fa-solid fa-xmark"></i></button>
-                    </li>
-
+                <ul class="border-2 border-gray-200  h-50 rounded-2xl shadow-xl mt-3 px-5" id="listeRevenus">
+            
                 </ul>
-                <p class="ml-5 text-lg mt-5">Total:</p>
+                <p class="ml-5 text-lg mt-5" id="totalRevenu">Total: 0€</p>
             </div>
         </section>
 
         <section>
             <h2 class="ml-5 text-lg">Dépenses:</h2>
             <div>
-                <ul class="border-2 border-gray-200 h-50 rounded-2xl shadow-xl mt-3">
-
+                <ul class="border-2 border-gray-200 h-50 rounded-2xl shadow-xl mt-3 px-5" id="listeDepenses">
                 </ul>
-                <p class="ml-5 text-lg mt-5">Total:</p>
+                <p class="ml-5 text-lg mt-5" id="totalDepense">Total: 0€</p>
             </div>
         </section>
 
@@ -52,17 +45,17 @@
         <form class="flex-col gap-2 hidden absolute  bg-violet-800 rounded-2xl shadow-xl/30 font-bold text-white p-5 md:bottom-20 md:right-80 md:w-100 ">
            
             <div class="flex gap-3 ">
-                <label for="depense"><input type="radio" id="depense" name="categorie" value="Dépenses"> Dépense
+                <label for="depense"><input type="radio" id="depense" name="categorie" required value="Dépenses"> Dépense
                 </label>
-                <label for="revenus"><input type="radio" id="revenus" name="categorie" value="Revenus"> Revenus</label>
+                <label for="revenus"><input type="radio" id="revenus" name="categorie" required value="Revenus"> Revenus</label>
                  <button class="ml-auto" id="closeBttn"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="flex flex-col gap-2">
                 <label>Montant:<input class="ml-1 border-2 border-gray-200 rounded-lg shadow-md p-1"
-                        type="number" id="montant"></label>
+                        type="number" required id="montant"></label>
                 <label>Motif : <input class="ml-1 border-2 border-gray-200 rounded-lg shadow-md p-1"
-                        type="text" id="motif"></label>
-                <label>Date: <input class="ml-1 border-2 border-gray-200 rounded-lg shadow-md p-1" type="date" id="date"></label>
+                        type="text" required id="motif"></label>
+                <label>Date: <input class="ml-1 border-2 border-gray-200 rounded-lg shadow-md p-1" type="date" required id="date"></label>
             </div>
             <button  class="bg-violet-800 border-1 border-white rounded-2xl shadow-xl/30 font-bold text-white p-5" id="validateBttn">Ajouter</button>
             
