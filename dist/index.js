@@ -31,32 +31,6 @@ function afficherTotal(euroArray, text) {
 }
 const totalRevenuText = document.getElementById('totalRevenu');
 const totalDepenseText = document.getElementById('totalDepense');
-//Create function for new li 
-function createNewLi(cartes) {
-    /*
-    //Create new Li and set innerHTMl,data-id and class
-    let newCard = document.createElement('li');
-    newCard.classList.add("border-2", "rounded-2xl", "shadow-md", "mt-3", "px-5", "py-2", "flex", "justify-between",);
-    newCard.setAttribute('data-id', cartes.id);
-    newCard.innerHTML = `
-        <p> Montant : ${cartes.montant} €</p>
-        <p> Motif : ${cartes.motif} </p>
-        <p> Date: ${cartes.date} </p>
-        <button> <i class="fa-solid fa-xmark" > </i></button > `
-    //Choose the right UL in HTML
-   
-    }*/
-    if (cartes.categorie === 'Revenus') {
-        filterDate(revenusArray, listeRevenus);
-    }
-    else {
-        filterDate(depensesArray, listeDepenses);
-        ;
-    }
-    //Choose the good array
-    afficherTotal(revenusArray, totalRevenuText);
-    afficherTotal(depensesArray, totalDepenseText);
-}
 function filterDate(array, liste) {
     liste.innerHTML = "";
     array.sort((a, b) => b.date.localeCompare(a.date));
@@ -94,6 +68,19 @@ function filterDate(array, liste) {
             }
         });
     });
+}
+//Create function for new li 
+function createNewLi(cartes) {
+    if (cartes.categorie === 'Revenus') {
+        filterDate(revenusArray, listeRevenus);
+    }
+    else {
+        filterDate(depensesArray, listeDepenses);
+        ;
+    }
+    //Choose the good array
+    afficherTotal(revenusArray, totalRevenuText);
+    afficherTotal(depensesArray, totalDepenseText);
 }
 //Open form with the bttn
 //Select AddBttn
