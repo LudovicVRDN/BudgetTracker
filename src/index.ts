@@ -41,43 +41,57 @@ interface ICartesListes {
     date: string
 }
 
-function createNewLi(cartes: ICartesListes): void {
-   
-    let newCard = document.createElement('li');
-    newCard.classList.add("border-2", "rounded-2xl", "shadow-md", "mt-3", "px-5", "py-2", "flex", "justify-between",);
-    newCard.setAttribute('data-id', cartes.id);
-    newCard.innerHTML = `
+function filterDate(array: ICartesListes[], liste: any): void {
+    liste.innerHTML = ""
+    array.sort((a: ICartesListes, b: ICartesListes) => b.date.localeCompare(a.date));
+    array.forEach((cartes) => {
+        let newCard = document.createElement('li');
+        newCard.classList.add("border-2", "rounded-2xl", "shadow-md", "mt-3", "px-5", "py-2", "flex", "justify-between",);
+        newCard.setAttribute('data-id', cartes.id);
+        newCard.innerHTML = `
         <p> Montant : ${cartes.montant} €</p>
         <p> Motif : ${cartes.motif} </p>
         <p> Date: ${cartes.date} </p>
         <button> <i class="fa-solid fa-xmark" > </i></button > `
-    if (cartes.categorie === "Dépenses") {
-        newCard.classList.add('border-red-400')
-        listeDepenses.appendChild(newCard);
-    } else if (cartes.categorie === "Revenus") {
-        newCard.classList.add('border-green-400')
-        listeRevenus.appendChild(newCard);
-    }
-    
-    newCard.addEventListener('click', (e: MouseEvent) => {
-        let targetBttn = e.target as HTMLElement
-        if (targetBttn.closest('button')) {
-            newCard.remove();
-            //Set in local storage
-            let newLocalStorageCartes: ICartesListes[] = localStorageCartes.filter((card) => card.id !== newCard.dataset.id);
-            localStorageCartes = newLocalStorageCartes;
-            localStorage.setItem("expenses_data", JSON.stringify(localStorageCartes));
-            //remove from depensesArray
-            depensesArray = depensesArray.filter((depenses) => depenses.id !== newCard.dataset.id)
-            //remove from revenusArray
-            revenusArray = revenusArray.filter((revenus) => revenus.id !== newCard.dataset.id)
-            afficherTotal(revenusArray, totalRevenuText);
-            afficherTotal(depensesArray, totalDepenseText);
-
+        if (cartes.categorie === "Dépenses") {
+            newCard.classList.add('border-red-400')
+            listeDepenses.appendChild(newCard);
+        } else if (cartes.categorie === "Revenus") {
+            newCard.classList.add('border-green-400')
+            listeRevenus.appendChild(newCard);
         }
 
+        newCard.addEventListener('click', (e: MouseEvent) => {
+            let targetBttn = e.target as HTMLElement
+            if (targetBttn.closest('button')) {
+                newCard.remove();
+                //Set in local storage
+                let newLocalStorageCartes: ICartesListes[] = localStorageCartes.filter((card) => card.id !== newCard.dataset.id);
+                localStorageCartes = newLocalStorageCartes;
+                localStorage.setItem("expenses_data", JSON.stringify(localStorageCartes));
+                //remove from depensesArray
+                depensesArray = depensesArray.filter((depenses) => depenses.id !== newCard.dataset.id)
+                //remove from revenusArray
+                revenusArray = revenusArray.filter((revenus) => revenus.id !== newCard.dataset.id)
+                afficherTotal(revenusArray, totalRevenuText);
+                afficherTotal(depensesArray, totalDepenseText);
+
+            }
+        })
     })
 }
+//Create function for new li 
+function createNewLi(cartes: ICartesListes): void {
+    if (cartes.categorie === 'Revenus') {
+        filterDate(revenusArray, listeRevenus);
+    } else {
+        filterDate(depensesArray, listeDepenses);;
+    }
+    //Choose the good array
+    afficherTotal(revenusArray, totalRevenuText);
+    afficherTotal(depensesArray, totalDepenseText);
+}
+
 //Open form with the bttn
 //Select AddBttn
 const addBttn = document.querySelector("#addBttn") as HTMLElement;
@@ -139,28 +153,17 @@ formAdd.addEventListener("submit", (e) => {
     //Add To localStorage
     localStorage.setItem("expenses_data", JSON.stringify(localStorageCartes));
     //Add to HTML
-         if (newLi.categorie === 'Revenus') {
-        createNewLi(newLi);;
-    } else {
-        createNewLi(newLi);;;
-    }
-    afficherTotal(revenusArray, totalRevenuText);
-    afficherTotal(depensesArray, totalDepenseText);
-
+    createNewLi(newLi);
 })
 //Get "expenses_data" from storage
-localStorageCartes = JSON.parse(localStorage.getItem("expenses_data") || "[]");
-localStorageCartes.forEach((post) => {
-     if (post.categorie === 'Revenus') {
-        createNewLi(post);;
-    } else {
+window.addEventListener('DOMContentLoaded', () => {
+    localStorageCartes = JSON.parse(localStorage.getItem("expenses_data") || "[]");
+    depensesArray = localStorageCartes.filter(item => item.categorie === "Dépenses");
+    revenusArray = localStorageCartes.filter(item => item.categorie === "Revenus");
+    depensesArray.forEach((post) => {
         createNewLi(post);
-    }
-     afficherTotal(revenusArray, totalRevenuText);
-    afficherTotal(depensesArray, totalDepenseText);
-
+    })
+    revenusArray.forEach((post) => {
+        createNewLi(post);
+    })
 })
-
-//Get depensesMontants
-const depensesMontant = depensesArray.map((depenses) => depenses.montant);
-console.log(depensesMontant);
